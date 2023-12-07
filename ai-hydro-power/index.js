@@ -11,8 +11,9 @@ app.set('view engine', 'ejs')
 
 const PORT = 8000
 
-app.get("/",(req,res)=>{
-    res.send('Home Page')
-})
+// routes
+const PageRoutes = require('./routes/pageRoutes')
+
+app.use('/',PageRoutes)
 
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`))
