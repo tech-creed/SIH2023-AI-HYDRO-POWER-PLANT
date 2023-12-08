@@ -6,5 +6,6 @@ const pageController = require("../controllers/pageController")
 
 
 router.get("/",pageController.homePage)
+router.get("/dashboard",pageController.dashBoard)
 
 module.exports = router

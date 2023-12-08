@@ -2,4 +2,8 @@ const homePage = async(req,res)=>{
     res.render('index')
 }
 
-module.exports = { homePage }
+const dashBoard = async(req,res)=>{
+    res.render('dashboard')
+}
+
+module.exports = { homePage,dashBoard }
