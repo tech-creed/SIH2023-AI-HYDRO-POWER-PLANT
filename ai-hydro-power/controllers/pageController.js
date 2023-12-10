@@ -53,7 +53,7 @@ const genP2IPage = async(req,res)=>{
 }
 
 const genPandIPage = async(req,res)=>{
-    res.render('dashboard')
+    res.render('img_to_2d_gen')
 }
 
 const river = async(req,res)=>{

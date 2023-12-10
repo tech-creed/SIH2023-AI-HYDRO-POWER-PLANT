@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Masking for Generation</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h2>Draw on Image to Specify Area for Generation</h2>
+    <div class="input-container">
+      <input type="file" id="imageInput" accept="image/*">
+      <canvas id="canvas" width="600" height="400"></canvas>
+      <button id="downloadButton">Download Masked Image</button>
+    </div>
+    <form class="stretch" id="promptAndImageForm">
+      <div class="form-container">
+        <textarea id="prompt-textarea" rows="4" placeholder="Enter Your Prompt..."></textarea>
+        <button type="submit" class="send-button">Generate Image</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/maskImage.js"></script>
+</body>
+</html>
