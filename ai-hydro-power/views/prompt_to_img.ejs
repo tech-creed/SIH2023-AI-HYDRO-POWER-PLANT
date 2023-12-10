@@ -380,11 +380,13 @@
 
       promptForm.addEventListener("submit", function (event) {
         event.preventDefault();
-
+        const generatedImagesContainer =
+              document.getElementById("generatedImages");
+            generatedImagesContainer.innerHTML = ""; 
         const textareaForValue = document.getElementById("prompt-textarea");
         const userInput = textareaForValue.value;
 
-        fetch("http://localhost:8000/text2img", {
+        fetch("http://localhost:3000/text2img", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -396,9 +398,6 @@
           .then((response) => response.json())
           .then((data) => {
             const generatedImages = data.generatedImagePath; 
-            const generatedImagesContainer =
-              document.getElementById("generatedImages");
-            generatedImagesContainer.innerHTML = ""; 
 
             generatedImages.forEach((path) => {
               const imgWrapper = document.createElement("div");
