@@ -60,5 +60,18 @@ const rainFallAnalysis = async(req,res)=>{
     res.render('rainfall',{statesInIndia})
 }
 
+const postGen = async(req,res)=>{
+    console.log('Received POST data:', req.body);
 
-module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome }
+  const sampleImagePaths = [
+    'img/carousel-1.jpg',
+    'img/carousel-1.jpg',
+    'img/carousel-1.jpg',
+    'img/carousel-1.jpg'
+  ];
+
+  res.json({ generatedImagePath: sampleImagePaths });
+}
+
+
+module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis }
