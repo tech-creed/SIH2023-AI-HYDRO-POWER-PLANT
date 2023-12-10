@@ -26,6 +26,7 @@ document.getElementById('imageInput').addEventListener('change', function(event)
     img.onload = function() {
       canvas.width = img.width;
       canvas.height = img.height;
+      ctx.lineWidth = 35;
       ctx.drawImage(img, 0, 0);
     }
     img.src = e.target.result;
@@ -73,7 +74,7 @@ document.getElementById('promptAndImageForm').addEventListener('submit', functio
 function initializeCanvas() {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
-  ctx.lineWidth = 5;
+  ctx.lineWidth = 50;
   ctx.lineCap = 'round';
   ctx.strokeStyle = 'white';
   ctx.fillStyle = 'black';

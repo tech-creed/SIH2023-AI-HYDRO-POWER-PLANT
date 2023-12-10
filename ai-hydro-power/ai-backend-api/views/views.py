@@ -45,4 +45,42 @@ def prompt2img():
         imgPath.append("/generated/"+str(i)+".png")
 
     return jsonify({'generatedImagePath': imgPath}) 
+
+@app.route('/img2img', methods = ['GET', 'POST'])
+def prompt2img():
+    image = request.json['image']
+    mask = request.json['mask']
+
+    image = Image.open(image)
+    mask = Image.open(mask)
+
+    image = e_image_base64(image)
+    mask = e_image_base64(mask)
+
+    i2i_data = {
+    "sampler": "DPM++ 2M Karras",
+    "init_images":[image],
+    "mask":mask,
+    "denoising_strength" : 0.75,
+    "prompt" : "run of river hydro power plant",
+    "batch_size": 3,
+    "steps": 20,
+    "cfg_scale" : 7.5,
+    "width": 512,
+    "height": 512,
+    "negative_prompt":"",
+    "mask_blur":4,
+    "inpainting_fill":1,
+    "inpaint_full_res": True,
+    "inpaint_full_res_padding":32
+    }
+
+    responce = requests.post(modelURL+'sdapi/v1/img2img', json=i2i_data)
+    imgPath = []
+    for i in range(len(responce.json()['images'])):
+        image = d_base64_image(responce.json()['images'][i])
+        image.save('../public/generated/'+str(i)+".png")
+        imgPath.append("/generated/"+str(i)+".png")
+
+    return jsonify({'generatedImagePath': imgPath}) 
     
