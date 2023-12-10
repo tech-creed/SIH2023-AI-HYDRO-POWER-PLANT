@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>2D Image Generation</title>
+    <title>Prompt to Image</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -38,6 +38,131 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 
     <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      .stretch {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .form-container {
+        flex: 1;
+        position: relative;
+      }
+
+      .text-area {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        resize: none;
+        outline: none;
+        height: auto;
+        min-height: 50px;
+        max-height: 150px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #b78d65 #fff;
+      }
+
+      .text-area::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .text-area::-webkit-scrollbar-thumb {
+        background-color: #b78d65;
+        border-radius: 4px;
+      }
+
+      .text-area::-webkit-scrollbar-track {
+        background-color: #fff;
+      }
+
+      .send-button {
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        padding: 8px;
+        background-color: #b78d65;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .send-button:focus {
+        outline: none;
+      }
+
+      .send-button svg {
+        stroke: white;
+      }
+
+      .generated-images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .generated-image {
+        margin: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .generated-image img {
+        width: 200px; /* Adjust image width */
+        height: 200px; /* Adjust image height */
+        object-fit: cover;
+      }
+
+      /* CSS Styles for Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        text-align: center;
+      }
+
+      .lightbox .close-btn {
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+      }
+
+      .lightbox .download-btn {
+        color: #fff;
+        text-decoration: none;
+        font-size: 24px;
+        position: absolute;
+        top: 32px;
+        right: calc(30px + 40px);
+        cursor: pointer;
+      }
+
+      .lightbox .download-btn i {
+        margin-right: 5px;
+      }
+
+      .lightbox .lightbox-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
   </head>
 
   <body>
@@ -91,100 +216,59 @@
     <!-- Service Start -->
     <div class="container-xxl py-5">
       <div class="container mt-5">
-        <div
-          class="text-center mx-auto mb-5 wow fadeInUp"
-          data-wow-delay="0.1s"
-          style="max-width: 600px"
-        >
-          <h4 class="section-title">Hydro Power Plant Image Generation</h4>
-          <h1 class="display-5 mb-4">
-            Effortlessly create custom 2D images specifically designed for hydro
-            power plants.
-          </h1>
+        <h2>Prompt to Image Generation</h2>
+
+        <div class="generated-images" id="generatedImages">
+          <!-- images will be populated here -->
         </div>
-        <div class="row">
-          <div
-            class="col-lg-6 col-md-6 wow fadeInUp"
-            data-wow-delay="0.1s"
-            style="
-              visibility: visible;
-              animation-delay: 0.1s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div
-              class="service-item d-flex position-relative text-center h-100"
-            >
-              <img class="bg-img" src="img/service-1.jpg" alt="" />
-              <div class="service-text p-5">
-                <img class="mb-4" src="img/icons/pencil.png" alt="Icon" />
 
-                <h5 class="mb-3">Generate Image</h5>
-                <p class="mb-4">
-                  Generate an 2D Images using text prompts and descriptions.
-                </p>
-                <a
-                  class="btn btn-primary"
-                  style="width: auto"
-                  href="/prompt-to-img"
-                  >Generate from Prompt</a
-                >
-              </div>
-            </div>
+        <br />
+        <br />
+
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+          <div class="button-container">
+            <span class="close-btn" onclick="closeLightbox()">&times;</span>
+            <a
+              id="downloadLink"
+              href="#"
+              download="image.jpg"
+              class="download-btn"
+              onclick="downloadImage()"
+            >
+              <i class="fa fa-download"></i>
+              <!-- Download icon -->
+            </a>
           </div>
-
-          <div
-            class="col-lg-6 col-md-6 wow fadeInUp"
-            data-wow-delay="0.1s"
-            style="
-              visibility: visible;
-              animation-delay: 0.1s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div
-              class="service-item d-flex position-relative text-center h-100"
-            >
-              <img class="bg-img" src="img/service-2.jpg" alt="" />
-              <div class="service-text p-5">
-                <img class="mb-4" src="img/icons/image.png" alt="Icon" />
-                <h5 class="mb-3">Generate Image from Prompt and Image</h5>
-                <p class="mb-4">
-                  Generate an 2D images using text prompts and uploaded images.
-                </p>
-                <a
-                  class="btn btn-primary"
-                  href="generate_image_from_prompt_and_image.html"
-                  style="width: auto"
-                  >Generate from Prompt & Image</a
-                >
-              </div>
-            </div>
+          <div class="lightbox-content">
+            <img id="selectedImage" src="" alt="Full-sized Image" />
           </div>
         </div>
 
-        <!-- Description about hydro power plant image generation -->
-        <hr />
-      <br>
-      <br>
-
-        <h3>About Hydro Power Plant Image Generation</h3>
-        <p>
-          Our system specializes in creating 2D images tailored specifically
-          for hydro power plants. Whether you need visual representations for
-          plant layouts, water flow diagrams, or site illustrations, our tool
-          offers customizable image generation to suit your requirements.
-      </p>
-      <br>
-
-        <!-- How It Works -->
-        <h3>How It Works ?</h3>
-        <p>
-          Choose the suitable option above and follow the instructions to input
-          text prompts or upload images. Our system will generate high-quality
-          2D images based on your inputs, designed specifically for hydro power
-          plant visuals.
-        </p>
+        <!-- Form for prompt input -->
+        <form class="stretch" id="promptForm">
+          <div class="form-container">
+            <textarea
+              id="prompt-textarea"
+              tabindex="0"
+              rows="1"
+              placeholder="Enter Your Prompt..."
+              class="text-area"
+            ></textarea>
+            <button type="submit" class="send-button" data-testid="send-button">
+              <span class="" data-state="closed">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 11L12 6L17 11M12 18V7"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -275,6 +359,84 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
       ><i class="bi bi-arrow-up"></i
     ></a>
+
+    <script>
+      const textarea = document.getElementById("prompt-textarea");
+
+      textarea.addEventListener("input", function () {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+      });
+
+      const promptForm = document.getElementById("promptForm");
+
+      textarea.addEventListener("keydown", function (event) {
+        if (event.keyCode === 13 && !event.shiftKey) {
+          event.preventDefault();
+
+          promptForm.dispatchEvent(new Event("submit"));
+        }
+      });
+
+      promptForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const textareaForValue = document.getElementById("prompt-textarea");
+        const userInput = textareaForValue.value;
+
+        fetch("http://localhost:8000/text2img", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: userInput,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const generatedImages = data.generatedImagePath; 
+            const generatedImagesContainer =
+              document.getElementById("generatedImages");
+            generatedImagesContainer.innerHTML = ""; 
+
+            generatedImages.forEach((path) => {
+              const imgWrapper = document.createElement("div");
+              imgWrapper.classList.add("generated-image");
+
+              const img = document.createElement("img");
+              img.src = path;
+              img.alt = "Generated Image";
+              img.onclick = function () {
+                openLightbox(path);
+              };
+
+              imgWrapper.appendChild(img);
+              generatedImagesContainer.appendChild(imgWrapper);
+            });
+
+            textareaForValue.value = "";
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+
+      function openLightbox(imageSrc) {
+        const lightbox = document.getElementById("lightbox");
+        const selectedImage = document.getElementById("selectedImage");
+        const downloadLink = document.getElementById("downloadLink");
+
+        selectedImage.src = imageSrc;
+        downloadLink.href = imageSrc; 
+
+        lightbox.style.display = "flex";
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none";
+      }
+    </script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

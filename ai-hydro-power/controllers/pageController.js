@@ -49,7 +49,7 @@ const genHome = async(req,res)=>{
 }
 
 const genP2IPage = async(req,res)=>{
-    res.render('dashboard')
+    res.render('prompt_to_img')
 }
 
 const genPandIPage = async(req,res)=>{
@@ -61,4 +61,4 @@ const rainFallAnalysis = async(req,res)=>{
 }
 
 
-module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,rainFallAnalysis }
+module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome }
