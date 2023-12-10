@@ -56,6 +56,10 @@ const genPandIPage = async(req,res)=>{
     res.render('dashboard')
 }
 
+const river = async(req,res)=>{
+    res.render('riverForecast')
+}
+
 const rainFallAnalysis = async(req,res)=>{
     res.render('rainfall',{statesInIndia})
 }
@@ -74,4 +78,4 @@ const postGen = async(req,res)=>{
 }
 
 
-module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis }
+module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis,river }
