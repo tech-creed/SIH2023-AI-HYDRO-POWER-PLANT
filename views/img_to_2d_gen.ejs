@@ -119,6 +119,85 @@
         height: 200px;
         object-fit: cover;
       }
+
+      .input-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      #imageInput {
+        display: none;
+      }
+
+      .custom-file-upload {
+        display: inline-block;
+        padding: 10px 15px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+      }
+
+      /* Styles for medium image container */
+      .medium-image-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .medium-image-container img {
+        max-width: 50%;
+        height: auto;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      /* Styles for lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        text-align: center;
+      }
+
+      .popupCanvas{
+        display: none;
+      }
+
+      .lightbox .close-btn {
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+      }
+
+      .close-btn,
+      .reset-btn {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        cursor: pointer;
+      }
+
+      .lightbox .lightbox-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .medium-image-container {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -181,12 +260,6 @@
         <br />
         <br />
 
-        
-        <div class="input-container">
-          <input type="file" id="imageInput" accept="image/*" />
-          <canvas id="canvas" width="600" height="400"></canvas>
-        </div>
-
         <!-- Form for prompt input -->
         <form class="stretch" id="promptAndImageForm">
           <div class="form-container">
@@ -196,6 +269,7 @@
               rows="1"
               placeholder="Enter Your Prompt..."
               class="text-area"
+              required
             ></textarea>
             <button type="submit" class="send-button" data-testid="send-button">
               <span class="" data-state="closed">
@@ -213,6 +287,40 @@
           </div>
         </form>
 
+        <div class="input-container">
+          <input type="file" id="imageInput" accept="image/*" />
+          <label for="imageInput" class="custom-file-upload"
+            >Upload Image</label
+          >
+        </div>
+
+        <div class="medium-image-container">
+          <img
+            id="inputImage"
+            src="#"
+            alt="Uploaded Image"
+            onclick="openLightbox(this.src)"
+          />
+          <h5 style="color:#4caf50">
+            Click on the image to paint a specific area for generating the
+            output image.
+          </h5>
+        </div>
+
+        <div id="lightbox" class="lightbox">
+          <span class="close-btn" onclick="closeLightbox()">&times;</span>
+          <span class="reset-btn" onclick="resetCanvas()">Reset</span>
+          <img
+            style="display: none"
+            id="popUpImage"
+            class="lightbox-content"
+            src="#"
+            alt="Pop-up Image"
+          />
+          <div class="lightbox-content">
+            <canvas id="popUpCanvas" width="600" height="400"></canvas>
+          </div>
+        </div>
       </div>
     </div>
 

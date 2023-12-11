@@ -13,5 +13,6 @@ router.get("/prompt-and-img",pageController.genPandIPage)
 router.get("/rainfallanalysis",pageController.rainFallAnalysis)
 router.post("/text2img",pageController.postGen)
 router.get("/river",pageController.river)
+router.post('/img2img',pageController.postGen2)
 
 module.exports = router

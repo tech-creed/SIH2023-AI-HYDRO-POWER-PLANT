@@ -77,5 +77,22 @@ const postGen = async(req,res)=>{
   res.json({ generatedImagePath: sampleImagePaths });
 }
 
+const postGen2 = async (req,res)=>{
+    const { image, mask, prompt } = req.body;
 
-module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis,river }
+    console.log(image)
+    console.log(mask)
+    console.log(prompt)
+
+    const sampleImagePaths = [
+        'img/carousel-1.jpg',
+        'img/carousel-1.jpg',
+        'img/carousel-1.jpg',
+        'img/carousel-1.jpg'
+      ];
+    
+  res.json({ generatedImage: sampleImagePaths });
+}
+
+
+module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis,river,postGen2 }
