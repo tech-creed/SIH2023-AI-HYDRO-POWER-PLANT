@@ -1,6 +1,7 @@
+import os
 import sys
-from json import load
 from flask import Flask
 
-
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
