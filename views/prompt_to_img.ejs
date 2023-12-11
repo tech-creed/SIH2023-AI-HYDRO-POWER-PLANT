@@ -115,12 +115,11 @@
       }
 
       .generated-image img {
-        width: 200px; /* Adjust image width */
-        height: 200px; /* Adjust image height */
+        width: 200px; 
+        height: 200px; 
         object-fit: cover;
       }
 
-      /* CSS Styles for Lightbox */
       .lightbox {
         display: none;
         position: fixed;
@@ -386,7 +385,7 @@
         const textareaForValue = document.getElementById("prompt-textarea");
         const userInput = textareaForValue.value;
 
-        fetch("http://localhost:3000/text2img", {
+        fetch("http://localhost:8000/text2img", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
