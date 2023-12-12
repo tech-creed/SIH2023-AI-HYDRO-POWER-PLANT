@@ -1,9 +1,23 @@
 const express = require("express")
+const multer = require('multer');
+const path = require('path');
+
 const router = express.Router()
 
-// route controller
+
 const pageController = require("../controllers/pageController")
 
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    }
+  });
+  
+  const upload = multer({ storage: storage });
 
 router.get("/",pageController.homePage)
 router.get("/dashboard",pageController.dashBoard)
@@ -13,6 +27,6 @@ router.get("/prompt-and-img",pageController.genPandIPage)
 router.get("/rainfallanalysis",pageController.rainFallAnalysis)
 router.post("/text2img",pageController.postGen)
 router.get("/river",pageController.river)
-router.post('/img2img',pageController.postGen2)
+router.post('/img2img',upload.fields([{ name: 'image' }, { name: 'mask' }]),pageController.postGen2)
 
 module.exports = router

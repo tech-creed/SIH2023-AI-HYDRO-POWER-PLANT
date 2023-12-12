@@ -78,11 +78,18 @@ const postGen = async(req,res)=>{
 }
 
 const postGen2 = async (req,res)=>{
-    const { image, mask, prompt } = req.body;
+    const { prompt } = req.body;
 
-    console.log(image)
-    console.log(mask)
-    console.log(prompt)
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+      }
+    
+      const imageFile = req.files['image'][0];
+      const maskFile = req.files['mask'][0];
+
+      console.log('imageFile:\n',imageFile)
+      console.log('maskFile:\n',maskFile)
+      console.log('prompt:\n',prompt)
 
     const sampleImagePaths = [
         'img/carousel-1.jpg',
