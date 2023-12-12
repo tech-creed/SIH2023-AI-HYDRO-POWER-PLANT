@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 
 from app import *
-from functions import *
+# from functions import *
 
 import requests
 from PIL import Image
@@ -48,15 +48,22 @@ def prompt2img():
     return jsonify({'generatedImagePath': imgPath}) 
 
 @app.route('/img2img', methods = ['GET', 'POST'])
-def prompt2img():
+def img2img():
+
     image = request.json['image']
     mask = request.json['mask']
 
-    image = Image.open(image)
-    mask = Image.open(mask)
+    image = d_base64_image(image)
+    mask = d_base64_image(mask)
+
+    image = image.resize((512, 512)) 
+    mask = mask.resize((512, 512)) 
 
     image = e_image_base64(image)
     mask = e_image_base64(mask)
+
+    # image = image.split(',')[-1]
+    # mask = mask.split(',')[-1]
 
     i2i_data = {
     "sampler": "DPM++ 2M Karras",
@@ -78,54 +85,56 @@ def prompt2img():
 
     responce = requests.post(modelURL+'sdapi/v1/img2img', json=i2i_data)
     imgPath = []
+    imageOrg = d_base64_image(image)
+    imageOrg.save('../public/generated/org.png')
+
     for i in range(len(responce.json()['images'])):
         image = d_base64_image(responce.json()['images'][i])
         image.save('../public/generated/'+str(i)+".png")
         imgPath.append("/generated/"+str(i)+".png")
-
     return jsonify({'generatedImagePath': imgPath}) 
     
-@app.route('/calculator', methods = ['GET', 'POST'])
-def calculator():
-    # Example input parameters
-    efficiency_total = 0.85
-    water_density = 1000
-    gravity_acceleration = 9.81
-    flow_rate = 10
-    head_height = 20
-    friction_factor = 0.02
-    velocity = 5
+# @app.route('/calculator', methods = ['GET', 'POST'])
+# def calculator():
+#     # Example input parameters
+#     efficiency_total = 0.85
+#     water_density = 1000
+#     gravity_acceleration = 9.81
+#     flow_rate = 10
+#     head_height = 20
+#     friction_factor = 0.02
+#     velocity = 5
 
-    # Example usage for type
-    capacity = 200  # in megawatts
-    reservoir_size = 1500  # in million cubic meters
-    presence_of_dam = True
+#     # Example usage for type
+#     capacity = 200  # in megawatts
+#     reservoir_size = 1500  # in million cubic meters
+#     presence_of_dam = True
 
-    # Calculate power output and efficiencies
-    power_turbine = calculate_hydro_power(efficiency_total, water_density, gravity_acceleration, flow_rate, head_height)
-    turbine_efficiency = calculate_turbine_efficiency(power_turbine, water_density, gravity_acceleration, flow_rate, head_height)
-    generator_efficiency = calculate_generator_efficiency(power_turbine * turbine_efficiency, power_turbine)
-    head_losses = calculate_penstock_head_losses(friction_factor, velocity, gravity_acceleration)
+#     # Calculate power output and efficiencies
+#     power_turbine = calculate_hydro_power(efficiency_total, water_density, gravity_acceleration, flow_rate, head_height)
+#     turbine_efficiency = calculate_turbine_efficiency(power_turbine, water_density, gravity_acceleration, flow_rate, head_height)
+#     generator_efficiency = calculate_generator_efficiency(power_turbine * turbine_efficiency, power_turbine)
+#     head_losses = calculate_penstock_head_losses(friction_factor, velocity, gravity_acceleration)
 
-    # Estimate sizes of components
-    turbine_size = estimate_turbine_size(flow_rate, head_height)
-    generator_size = estimate_generator_size(power_turbine * turbine_efficiency)
-    penstock_size = estimate_penstock_size(flow_rate, velocity)
+#     # Estimate sizes of components
+#     turbine_size = estimate_turbine_size(flow_rate, head_height)
+#     generator_size = estimate_generator_size(power_turbine * turbine_efficiency)
+#     penstock_size = estimate_penstock_size(flow_rate, velocity)
 
-    hydro_type = classify_hydro_type(capacity, reservoir_size, presence_of_dam)
+#     hydro_type = classify_hydro_type(capacity, reservoir_size, presence_of_dam)
 
-    output = { 
-        'power_output':power_turbine, 
-        'turbine_efficiency':turbine_efficiency, 
-        'generator_efficiency':generator_efficiency, 
-        'head_losses':head_losses, 
-        'turbine_size':turbine_size, 
-        'generator_size':generator_size, 
-        'penstock_size':penstock_size,
-        'hydro_type':hydro_type
-    }
-    # Power Output :Watts
-    # Penstock Head Losses:  meters
-    # Turbine Size (Diameter):  meters
-    # Generator Size (Capacity):  Watts
-    # Penstock Size (Diameter):  meters
+#     output = { 
+#         'power_output':power_turbine, 
+#         'turbine_efficiency':turbine_efficiency, 
+#         'generator_efficiency':generator_efficiency, 
+#         'head_losses':head_losses, 
+#         'turbine_size':turbine_size, 
+#         'generator_size':generator_size, 
+#         'penstock_size':penstock_size,
+#         'hydro_type':hydro_type
+#     }
+#     # Power Output :Watts
+#     # Penstock Head Losses:  meters
+#     # Turbine Size (Diameter):  meters
+#     # Generator Size (Capacity):  Watts
+#     # Penstock Size (Diameter):  meters
