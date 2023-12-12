@@ -76,15 +76,18 @@ function processToBlackAndWhite(imageData) {
     return image.src;
   }
   
+  let isCanvasPainted = false;
 
 document.getElementById('popUpCanvas').addEventListener('mousedown', function(event) {
   isDrawing = true;
+  isCanvasPainted = true;
   ctx.beginPath();
   ctx.moveTo(event.offsetX, event.offsetY);
 });
 
 document.getElementById('popUpCanvas').addEventListener('mousemove', function(event) {
   if (isDrawing) {
+    isCanvasPainted = true;
     ctx.lineTo(event.offsetX, event.offsetY);
     ctx.stroke();
   }
@@ -92,14 +95,31 @@ document.getElementById('popUpCanvas').addEventListener('mousemove', function(ev
 
 document.getElementById('popUpCanvas').addEventListener('mouseup', function() {
   isDrawing = false;
+  isCanvasPainted = true;
   ctx.closePath();
 });
 
 document.getElementById('promptAndImageForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
+  const imageInput = document.getElementById('imageInput');
+  const maskPopupCanvas = document.getElementById('popUpCanvas');
+  const ctxPopup = maskPopupCanvas.getContext('2d');
+
+  if (imageInput.files.length === 0) {
+    alert('Please upload an image.');
+    return;
+  }  
+
+  if (!isCanvasPainted) {
+    alert('Please paint on the image to specify the portion to generate.');
+    return;
+  }
+
   const maskImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const processedImageData = processToBlackAndWhite(maskImageData);
+
+  
 
   const processedCanvas = document.createElement('canvas');
   processedCanvas.width = canvas.width;
@@ -153,6 +173,7 @@ document.getElementById('promptAndImageForm').addEventListener('submit', functio
             });
 
             textareaForValue.value = "";
+            clearUploadedImageAndCanvas();
   })
   .catch(error => {
     console.error('Error:', error);
@@ -219,4 +240,17 @@ function resetCanvas() {
     const file = fileInput.files[0];
     setImageAsCanvas(file);
   }
+}
+
+
+function clearUploadedImageAndCanvas() {
+  const imageInput = document.getElementById('imageInput');
+  imageInput.value = null;
+
+  document.querySelector('.input-container').style.display = 'block';
+  document.querySelector('.medium-image-container').style.display = 'none';
+
+  const canvas = document.getElementById('popUpCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }

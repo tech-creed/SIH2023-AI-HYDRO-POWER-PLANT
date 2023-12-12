@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>2D Image Generation</title>
+    <title>Image and Prompt to AI 2D Image Generation</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -144,6 +144,11 @@
         margin-bottom: 20px;
       }
 
+      .btn-center-align {
+        display: flex;
+  justify-content: center;
+  margin-top: 10px; 
+      }
       .medium-image-container img {
         max-width: 50%;
         height: auto;
@@ -251,7 +256,7 @@
     <!-- Service Start -->
     <div class="container-xxl py-5">
       <div class="container mt-5">
-        <h2>Draw on Image to Specify Area for Generation</h2>
+        <h2>Prompt & Image to AI Generate 2D Hydro Power Plant</h2>
 
         <div class="generated-images" id="generatedImages">
           <!-- images will be populated here -->
@@ -301,10 +306,16 @@
             alt="Uploaded Image"
             onclick="openLightbox(this.src)"
           />
-          <h5 style="color:#4caf50">
+          <h5 style="color:#4caf50;padding-top:3%">
             Click on the image to paint a specific area for generating the
             output image.
           </h5>
+
+          <br>
+          <div class="btn-center-align">
+            <button onclick="clearUploadedImageAndCanvas()" class="btn btn-danger py-2 px-4 d-none d-lg-block">Reset</button>
+          </div>
+          
         </div>
 
         <div id="lightbox" class="lightbox">
