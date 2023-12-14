@@ -24,9 +24,9 @@ router.get("/dashboard",pageController.dashBoard)
 router.get("/2d-gen",pageController.genHome)
 router.get("/prompt-to-img",pageController.genP2IPage)
 router.get("/prompt-and-img",pageController.genPandIPage)
-router.get("/rainfallanalysis",pageController.rainFallAnalysis)
+router.get("/rainfall-analysis",pageController.rainFallAnalysis)
 router.post("/text2img",pageController.postGen)
-router.get("/river",pageController.river)
+router.get("/river-analysis",pageController.river)
 router.post('/img2img',upload.fields([{ name: 'image' }, { name: 'mask' }]),pageController.postGen2)
 
 module.exports = router
