@@ -60,6 +60,10 @@ const river = async(req,res)=>{
     res.render('riverForecast')
 }
 
+const meta = async(req,res)=>{
+  res.render('meta_data')
+}
+
 const rainFallAnalysis = async(req,res)=>{
     res.render('rainfall',{statesInIndia})
 }
@@ -102,4 +106,4 @@ const postGen2 = async (req,res)=>{
 }
 
 
-module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis,river,postGen2 }
+module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis,river,postGen2,meta }
