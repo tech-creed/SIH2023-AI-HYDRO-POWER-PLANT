@@ -134,28 +134,12 @@ def img2img():
         imgPath.append("/generated/"+str(i)+".png")
     return jsonify({'generatedImagePath': imgPath}) 
     
-<<<<<<< Updated upstream
-
-
-
-# @app.route('/calculator', methods = ['GET', 'POST'])
-# def calculator():
-#     # Example input parameters
-#     efficiency_total = 0.85
-#     water_density = 1000
-#     gravity_acceleration = 9.81
-#     flow_rate = 10
-#     head_height = 20
-#     friction_factor = 0.02
-#     velocity = 5
-=======
 @app.route('/calculator', methods = ['GET', 'POST'])
 def calculator():
     Head = request.json['head']
     flow_rate = request.json['flow_rate']
     flow_velocity = request.json['flow_velocity']
     penstock_material = request.json['penstock_material']
->>>>>>> Stashed changes
 
     res = metadata_analysis(Head, flow_rate, flow_velocity, penstock_material)
 
