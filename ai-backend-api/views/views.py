@@ -15,8 +15,8 @@ import base64
 
 modelURL = "http://localhost:7860/"
 
-df=pd.read_csv("../data/rainfall in india 1901-2015.csv")
-zx=pd.read_csv("../data/district wise rainfall normal.csv")
+df=pd.read_csv("data/rainfall in india 1901-2015.csv")
+zx=pd.read_csv("data/district wise rainfall normal.csv")
 
 def colors_from_values(values, palette_name):
     # normalize the values to range [0, 1]
@@ -40,7 +40,7 @@ def e_image_base64(image):
     return base64.b64encode(bytes_data).decode('utf-8')
 
 @app.route('/rainfall', methods = ['GET', 'POST'])
-def prompt2img():
+def rainfallAnalysis():
     print(request.json)
     state = zx[zx.STATE_UT_NAME == request.json['state']]
 
@@ -101,21 +101,26 @@ def img2img():
     # image = image.split(',')[-1]
     # mask = mask.split(',')[-1]
 
+    if(request.json['prompt']):
+        request.json['prompt'] = request.json['prompt']
+    else:
+        request.json['prompt'] = 'run of river hydro power plant'
+
     i2i_data = {
     "sampler": "DPM++ 2M Karras",
     "init_images":[image],
     "mask":mask,
     "denoising_strength" : 0.75,
-    "prompt" : "run of river hydro power plant",
+    "prompt" : request.json['prompt'],
     "batch_size": 3,
     "steps": 30,
     "cfg_scale" : 7.5,
     "width": 512,
     "height": 512,
-    "negative_prompt":"no hydro power plant",
+    "negative_prompt":"",
     "mask_blur":4,
     "inpainting_fill":1,
-    "inpaint_full_res": True
+    "inpaint_full_res": False
     }
 
     responce = requests.post(modelURL+'sdapi/v1/img2img', json=i2i_data)
