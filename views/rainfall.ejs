@@ -67,7 +67,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <h4 class="section-title">Analyse Data</h4>
-                    <h3 class="display-5 mb-4">Enter your state and district to analyze rainfall</h3>
+                    <h3 class="display-5 mb-4">Enter your state to analyze rainfall based on past data</h3>
                     <form action="" method="post">
                     <div class="row g-3">
                         <div class="col-12 ">
@@ -79,11 +79,6 @@
                             </select>
                         </div>
                         <br>
-                        <div class="col-12 ">
-                            <select class="form-select" style="height: 55px;" name="district" id="district" required>
-                                <option selected>Choose District</option>
-                            </select>
-                        </div>
                         <br>
                         <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" type="submit">Analyze</button>
@@ -94,7 +89,9 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <h4 class="section-title">Result</h4>
                     <br>
-                    <img src="img/graph.png" alt="Result Image">
+                    <a href="img/graph.png" download="Rainfall_image.jpg">
+                        <img src="img/graph.png" alt="Result Image">
+                    </a>>
                 </div>
             </div>
         </div>
@@ -112,8 +109,10 @@
             <div class="row g-5">
                 <div class="col-lg-3">
                 </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img src="img/graph.png" alt="Result Image">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="overflow: auto;">
+                    <a href="img/graph.png" download="Rainfall_image.jpg">
+                        <img src="img/graph.png" alt="Result Image">
+                    </a>
                 </div>
                 <div class="col-lg-3">
                 </div>
@@ -177,8 +176,6 @@
         </div>
     </div>
     <!-- Footer End -->
-
-    <script src="./js/dynamicselect.js"></script>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

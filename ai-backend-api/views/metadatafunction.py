@@ -199,4 +199,3 @@ def metadata_analysis(Head, flow_rate, flow_velocity, penstock_material):
         - 'hydro_poweroutput' (float): Hydroelectric power output of the system (in watts).
 
     """
-
