@@ -2,45 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Metadata Predictive Analysis </title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta charset="utf-8" />
+    <title>Metadata Predictive Analysis</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon.ico" rel="icon" />
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Teko:wght@400;500;600&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        .output3D {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border position-relative text-primary" style="width: 6rem; height: 6rem;" role="status">
+        <div class="spinner-border position-relative text-primary" style="width: 6rem; height: 6rem" role="status">
         </div>
-        <img class="position-absolute top-50 start-50 translate-middle" src="img/icons/icon-1.png" alt="Icon">
+        <img class="position-absolute top-50 start-50 translate-middle" src="img/icons/icon-1.png" alt="Icon" />
     </div>
     <!-- Spinner End -->
 
@@ -64,43 +69,56 @@
     </nav>
     <!-- Navbar End -->
 
-
     <!-- form Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px">
                 <h4 class="section-title">Metadata Predictive Analysis</h4>
-                <h1 class="display-5 mb-4">Recommend turbine, generator, and transformer types for optimal hydro power.</h1>
+                <h1 class="display-5 mb-4">
+                    Recommend turbine, generator, and transformer types for optimal
+                    hydro power.
+                </h1>
             </div>
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control" placeholder="Head (meters)" style="height: 55px;">
+                    <form id="meta-data">
+
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" name="head" class="form-control" placeholder="Head (meters)"
+                                    style="height: 55px" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" name="flow_rate" class="form-control"
+                                    placeholder="Flow Rate (cubic meters/sec)" style="height: 55px" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" name="flow_velocity" class="form-control"
+                                    placeholder="Flow Velocity (meters/sec)" style="height: 55px" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <select name="penstock_material" class="form-select" style="height: 55px">
+                                    <option selected>Select Penstock Material</option>
+                                    <option value="steel">Steel</option>
+                                    <option value="concrete">Concrete</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control" placeholder="Tensile Strength (megapascals)"
+                                    style="height: 55px" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control" placeholder="Safety Factor"
+                                    style="height: 55px" />
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">
+                                    Analyze
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="email" class="form-control" placeholder="Flow Rate (cubic meters/sec)" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control" placeholder="Flow Velocity (meters/sec)" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <select class="form-select" style="height: 55px;">
-                                <option selected>Select Penstock Material</option>
-                                <option value="steel">Steel</option>
-                                <option value="concrete">Concrete</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control" placeholder="Tensile Strength (megapascals)" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control" placeholder="Safety Factor" style="height: 55px;">
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Analyze</button>
-                        </div>
-                    </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -109,97 +127,159 @@
 
     <!-- About Start -->
     <div class="container-xxl py-5">
-        <div class="container">
+        <div class="container output3D">
+
+            <!-- turbine -->
             <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="about-img">
-                        <img class="img-fluid" src="img/about-1.jpg" alt="">
-                        <img class="img-fluid" src="img/about-2.jpg" alt="">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
+                    <div style="height: 100%;">
+                        <model-viewer id="turbineViewer" src="" alt="A 3D model" autoplay camera-controls
+                            style="width: 100%; height: 100%;"></model-viewer>
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h4 class="section-title">About Us</h4>
-                    <h1 class="display-5 mb-4">A Creative Architecture Agency For Your Dream Home</h1>
-                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                    <h4 class="section-title">Turbine</h4>
+                    <h1 class="display-5 mb-4" id="turbineType">
+                    </h1>
+                    <p id="turComponentDescription"></p>
+                    <p class="mb-4" id="turPowerConsumption"></p>
+                    <p class="mb-4" id="turRotationalSpeed"></p>
+
                     <div class="d-flex align-items-center mb-5">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center border border-5 border-primary" style="width: 120px; height: 120px;">
-                            <h1 class="display-1 mb-n2" data-toggle="counter-up">25</h1>
-                        </div>
-                        <div class="ps-4">
-                            <h3>Years</h3>
-                            <h3>Working</h3>
-                            <h3 class="mb-0">Experience</h3>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <!-- generator -->
+                <div class="row g-5">
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                        <h4 class="section-title">Generator</h4>
+                        <h1 class="display-5 mb-4" id="generatorType">
+                        </h1>
+                        <p id="genComponentDescription"></p>
+                        <p class="mb-4" id="genPowerConsumption"></p>
+                        <p class="mb-4" id="genRotationalSpeed"></p>
+                    </div>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
+                        <div style="height: 100%;">
+                            <model-viewer id="generatorViewer" src="" alt="A 3D model" autoplay camera-controls
+                                style="width: 100%; height: 100%;"></model-viewer>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5" href="">Read More</a>
                 </div>
+
+                <br>
+                <br>
+
+                <!-- penstock -->
+
+                <div class="row g-5">
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
+                        <div style="height: 100%;">
+                            <model-viewer id="penstockViewer" src="" alt="A 3D model" autoplay camera-controls
+                                style="width: 100%; height: 100%;"></model-viewer>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                        <h4 class="section-title">Penstock</h4>
+                        <h1 class="display-5 mb-4">
+                            A Creative Architecture Agency For Your Dream Home
+                        </h1>
+                        <p>
+                            Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
+                            diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet
+                            lorem sit clita duo justo magna dolore erat amet
+                        </p>
+                        <p class="mb-4">
+                            Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No
+                            stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo
+                            nonumy clita sit at, sed sit sanctus dolor eos.
+                        </p>
+                        <div class="d-flex align-items-center mb-5">
+                            <div class="d-flex flex-shrink-0 align-items-center justify-content-center border border-5 border-primary"
+                                style="width: 120px; height: 120px">
+                                <h1 class="display-1 mb-n2" data-toggle="counter-up">25</h1>
+                            </div>
+                            <div class="ps-4">
+                                <h3>Years</h3>
+                                <h3>Working</h3>
+                                <h3 class="mb-0">Experience</h3>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary py-3 px-5" href="">Read More</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <!-- About End -->
+        <!-- About End -->
 
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-body footer mt-5 pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="text-light mb-4">About</h3>
-                    <p class="mb-2">Our application will create both 2D and 3D model and structure of Hydro power plant
-                        based on getting the ​input from user.</p>
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-body footer mt-5 pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h3 class="text-light mb-4">About</h3>
+                        <p class="mb-2">
+                            Our application will create both 2D and 3D model and structure of
+                            Hydro power plant based on getting the ​input from user.
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h3 class="text-light mb-4">Features</h3>
+                        <a class="btn btn-link" href="">RiverForecast</a>
+                        <a class="btn btn-link" href="">Rainfall Analysis</a>
+                        <a class="btn btn-link" href="">HydroVision</a>
+                        <a class="btn btn-link" href="">Metadata Predictive Analysis</a>
+                        <a class="btn btn-link" href="">2D-AI Image Generation</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h3 class="text-light mb-4">Quick Links</h3>
+                        <a class="btn btn-link" href="">RiverForecast </a>
+                        <a class="btn btn-link" href="">Rainfall Analysis</a>
+                        <a class="btn btn-link" href="">HydroVision</a>
+                        <a class="btn btn-link" href="">Metadata Predictive Analysis</a>
+                        <a class="btn btn-link" href="">2D-AI Image Generation</a>
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="text-light mb-4">Features</h3>
-                    <a class="btn btn-link" href="">RiverForecast</a>
-                    <a class="btn btn-link" href="">Rainfall Analysis</a>
-                    <a class="btn btn-link" href="">HydroVision</a>
-                    <a class="btn btn-link" href="">Metadata Predictive Analysis</a>
-                    <a class="btn btn-link" href="">2D-AI Image Generation</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="text-light mb-4">Quick Links</h3>
-                    <a class="btn btn-link" href="">RiverForecast </a>
-                    <a class="btn btn-link" href="">Rainfall Analysis</a>
-                    <a class="btn btn-link" href="">HydroVision</a>
-                    <a class="btn btn-link" href="">Metadata Predictive Analysis</a>
-                    <a class="btn btn-link" href="">2D-AI Image Generation</a>
-                </div>
-
             </div>
-        </div>
-        <div class="container-fluid copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">Designed and Developed by TECH CREED
-                        </a>,During the Smart India Hackathon.
+            <div class="container-fluid copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy;
+                            <a href="#">Designed and Developed by TECH CREED </a>,During the
+                            Smart India Hackathon.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Footer End -->
+        <!-- Footer End -->
 
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <script src="js/metaDataAnalysis.js"></script>
 </body>
 
 </html>

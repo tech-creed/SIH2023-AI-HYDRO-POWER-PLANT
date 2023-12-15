@@ -136,11 +136,13 @@ def img2img():
     
 @app.route('/calculator', methods = ['GET', 'POST'])
 def calculator():
-    Head = request.json['head']
-    flow_rate = request.json['flow_rate']
-    flow_velocity = request.json['flow_velocity']
+    Head = float(request.json['head'])
+    flow_rate = float(request.json['flow_rate'])
+    flow_velocity = float(request.json['flow_velocity'])
     penstock_material = request.json['penstock_material']
 
     res = metadata_analysis(Head, flow_rate, flow_velocity, penstock_material)
+
+    res['penstock_type'] = request.json['penstock_material']
 
     return jsonify(res)
