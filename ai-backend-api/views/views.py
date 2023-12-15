@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from app import *
-# from functions import *
+from views.metadatafunction import *
 
 import requests
 from PIL import Image
@@ -134,6 +134,7 @@ def img2img():
         imgPath.append("/generated/"+str(i)+".png")
     return jsonify({'generatedImagePath': imgPath}) 
     
+<<<<<<< Updated upstream
 
 
 
@@ -147,37 +148,15 @@ def img2img():
 #     head_height = 20
 #     friction_factor = 0.02
 #     velocity = 5
+=======
+@app.route('/calculator', methods = ['GET', 'POST'])
+def calculator():
+    Head = request.json['head']
+    flow_rate = request.json['flow_rate']
+    flow_velocity = request.json['flow_velocity']
+    penstock_material = request.json['penstock_material']
+>>>>>>> Stashed changes
 
-#     # Example usage for type
-#     capacity = 200  # in megawatts
-#     reservoir_size = 1500  # in million cubic meters
-#     presence_of_dam = True
+    res = metadata_analysis(Head, flow_rate, flow_velocity, penstock_material)
 
-#     # Calculate power output and efficiencies
-#     power_turbine = calculate_hydro_power(efficiency_total, water_density, gravity_acceleration, flow_rate, head_height)
-#     turbine_efficiency = calculate_turbine_efficiency(power_turbine, water_density, gravity_acceleration, flow_rate, head_height)
-#     generator_efficiency = calculate_generator_efficiency(power_turbine * turbine_efficiency, power_turbine)
-#     head_losses = calculate_penstock_head_losses(friction_factor, velocity, gravity_acceleration)
-
-#     # Estimate sizes of components
-#     turbine_size = estimate_turbine_size(flow_rate, head_height)
-#     generator_size = estimate_generator_size(power_turbine * turbine_efficiency)
-#     penstock_size = estimate_penstock_size(flow_rate, velocity)
-
-#     hydro_type = classify_hydro_type(capacity, reservoir_size, presence_of_dam)
-
-#     output = { 
-#         'power_output':power_turbine, 
-#         'turbine_efficiency':turbine_efficiency, 
-#         'generator_efficiency':generator_efficiency, 
-#         'head_losses':head_losses, 
-#         'turbine_size':turbine_size, 
-#         'generator_size':generator_size, 
-#         'penstock_size':penstock_size,
-#         'hydro_type':hydro_type
-#     }
-#     # Power Output :Watts
-#     # Penstock Head Losses:  meters
-#     # Turbine Size (Diameter):  meters
-#     # Generator Size (Capacity):  Watts
-#     # Penstock Size (Diameter):  meters
+    return jsonify(res)
