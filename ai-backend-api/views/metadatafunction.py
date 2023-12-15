@@ -133,7 +133,7 @@ def select_generator_with_excitation(turbine_type, speed_range):
 
     elif turbine_type == 'Kaplan Turbine':
         if min_speed >= 60 and max_speed <= 200:
-            generator_type = 'Low-speed synchronous (multi-pole) or asynchronous with variable-speed drive'
+            generator_type = 'Low-speed synchronous (multi-pole)'
             excitation_system = 'Indirect-coupled exciter (synchronous) or variable-frequency control (asynchronous)'
         else:
             generator_type = 'Unknown'
