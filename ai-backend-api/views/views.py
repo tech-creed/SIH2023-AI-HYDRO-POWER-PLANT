@@ -1,17 +1,17 @@
 from flask import jsonify, request
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
 from app import *
 from views.metadatafunction import *
 
-import requests
-from PIL import Image
-import io
-import base64
+# import requests
+# from PIL import Image
+# import io
+# import base64
 
 modelURL = "http://localhost:7860/"
 
