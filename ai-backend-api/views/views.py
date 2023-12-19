@@ -1,6 +1,6 @@
 from flask import jsonify, request
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -43,6 +43,10 @@ def e_image_base64(image):
 def rainfallAnalysis():
     print(request.json)
     state = zx[zx.STATE_UT_NAME == request.json['state']]
+    yrState = df[df.SUBDIVISION == request.json['state']]
+
+
+    print(state)
 
     plt.figure(figsize=(25,10))
     sns.barplot(data=state,x="DISTRICT", y="ANNUAL", palette=colors_from_values(state["ANNUAL"], "YlOrRd"))
@@ -51,11 +55,11 @@ def rainfallAnalysis():
     plt.savefig('../public/graph/district-wise-bar.png', bbox_inches='tight')
 
     plt.figure(figsize=(25,10))
-    sns.barplot(data=state, x="YEAR",y="ANNUAL", palette=colors_from_values(state["ANNUAL"], "YlOrRd"))
+    sns.barplot(data=yrState, x="YEAR",y="ANNUAL", palette=colors_from_values(yrState["ANNUAL"], "YlOrRd"))
     plt.xticks(rotation=90)
     plt.savefig('../public/graph/state-bar.png', bbox_inches='tight')
 
-    imgPath = ['../public/graph/district-wise-bar.png', '../public/graph/state-bar.png']
+    imgPath = ['/graph/district-wise-bar.png', '/graph/state-bar.png']
 
     return jsonify({'generatedGraphPath': imgPath}) 
 

@@ -14,7 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Teko:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Teko:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -34,14 +36,17 @@
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border position-relative text-primary" style="width: 6rem; height: 6rem;" role="status"></div>
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border position-relative text-primary" style="width: 6rem; height: 6rem;" role="status">
+        </div>
         <img class="position-absolute top-50 start-50 translate-middle" src="img/icons/icon-1.png" alt="Icon">
     </div>
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top py-lg-0 px-lg-5 wow fadeIn"
+        data-wow-delay="0.1s">
         <a href="/" class="navbar-brand ms-4 ms-lg-0">
             <h1 class="text-primary m-0"><img class="me-3" src="img/icons/icon-1.png" alt="Icon">HydroCraft</h1>
         </a>
@@ -52,7 +57,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="/" class="nav-item nav-link active">Home</a>
             </div>
-            <a href="/" class="btn btn-primary py-2 px-4 d-none d-lg-block">Features</a>
+            <a href="/dashboard" class="btn btn-primary py-2 px-4 d-none d-lg-block">Features</a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -62,17 +67,58 @@
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h4 class="section-title">Our Features</h4>
-                <h1 class="display-5 mb-4">Building blocks of innovation, simple solutions for powerful hydro designs.</h1>
+                <h1 class="display-5 mb-4">Building blocks of innovation, simple solutions for powerful hydro designs.
+                </h1>
             </div>
             <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item d-flex position-relative text-center h-100">
+                        <img class="bg-img" src="img/service-3.jpg" alt="">
+                        <div class="service-text p-5">
+                            <img class="mb-4" src="img/icons/rain.png" alt="Icon">
+                            <h3 class="mb-3">Rainfall Analysis</h3>
+                            <p class="mb-4">Analyze the past rainfall data to guide present decisions of hydro power
+                                plant.</p>
+                            <a class="btn" href="/rainfall-analysis"><i class="fa fa-plus text-primary me-3"></i>Read
+                                More</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item d-flex position-relative text-center h-100">
                         <img class="bg-img" src="img/service-1.jpg" alt="">
                         <div class="service-text p-5">
                             <img class="mb-4" src="img/icons/location.png" alt="Icon">
                             <h3 class="mb-3">RiverForecast</h3>
-                            <p class="mb-4">Forecast rivers with satellite data for precise hydro power plant planning.</p>
-                            <a class="btn" href="/river-analysis"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                            <p class="mb-4">Forecast rivers with satellite data for precise hydro power plant planning.
+                            </p>
+                            <a class="btn" href="/river-analysis"><i class="fa fa-plus text-primary me-3"></i>Read
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item d-flex position-relative text-center h-100">
+                        <img class="bg-img" src="img/service-4.jpg" alt="">
+                        <div class="service-text p-5">
+                            <img class="mb-4" src="img/icons/icon-3.png" alt="Icon">
+                            <h3 class="mb-3">Metadata Predictive Analysis</h3>
+                            <p class="mb-4">Recommend turbine, generator, and transformer types for optimal hydro power.
+                            </p>
+                            <a class="btn" href="/meta-data"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item d-flex position-relative text-center h-100">
+                        <img class="bg-img" src="img/service-5.jpg" alt="">
+                        <div class="service-text p-5">
+                            <img class="mb-4" src="img/icons/ai.png" alt="Icon">
+                            <h3 class="mb-3">2D-AI Image Generation</h3>
+                            <p class="mb-4">This tool creates a hydro power plant 2D and AI-generated imaginary images.
+                            </p>
+                            <a class="btn" href="/2d-gen"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                         </div>
                     </div>
                 </div>
@@ -87,47 +133,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item d-flex position-relative text-center h-100">
-                        <img class="bg-img" src="img/service-3.jpg" alt="">
-                        <div class="service-text p-5">
-                            <img class="mb-4" src="img/icons/rain.png" alt="Icon">
-                            <h3 class="mb-3">Rainfall Analysis</h3>
-                            <p class="mb-4">Analyze the past rainfall data to guide present decisions of hydro power plant.</p>
-                            <a class="btn" href="/rainfall-analysis"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item d-flex position-relative text-center h-100">
-                        <img class="bg-img" src="img/service-4.jpg" alt="">
-                        <div class="service-text p-5">
-                            <img class="mb-4" src="img/icons/icon-3.png" alt="Icon">
-                            <h3 class="mb-3">Metadata Predictive Analysis</h3>
-                            <p class="mb-4">Recommend turbine, generator, and transformer types for optimal hydro power.</p>
-                            <a class="btn" href="/meta-data"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item d-flex position-relative text-center h-100">
-                        <img class="bg-img" src="img/service-5.jpg" alt="">
-                        <div class="service-text p-5">
-                            <img class="mb-4" src="img/icons/ai.png" alt="Icon">
-                            <h3 class="mb-3">2D-AI Image Generation</h3>
-                            <p class="mb-4">This tool creates a hydro power plant 2D and AI-generated imaginary images.</p>
-                            <a class="btn" href="/2d-gen"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item d-flex position-relative text-center h-100">
                         <img class="bg-img" src="img/service-6.jpg" alt="">
                         <div class="service-text p-5">
                             <img class="mb-4" src="img/icons/icon-2.png" alt="Icon">
                             <h3 class="mb-3">Guidebook</h3>
-                            <p class="mb-4">A comprehensive handbook for easy navigation through the application's features.</p>
-                            <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                            <p class="mb-4">A comprehensive handbook for easy navigation through the application's
+                                features.</p>
+                            <a class="btn" href="/dashboard"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                         </div>
                     </div>
                 </div>
@@ -141,16 +156,9 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h3 class="text-light mb-4">Address</h3>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Theni, Tamilnadu, India</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+91 9876543210</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>info@techcreed.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-body me-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-body me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-body me-1" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-body me-0" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <h3 class="text-light mb-4">About</h3>
+                    <p class="mb-2">Our application will create both 2D and 3D model and structure of Hydro power plant
+                        based on getting the ​input from user.</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-light mb-4">Features</h3>
@@ -162,27 +170,21 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-light mb-4">Quick Links</h3>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Features</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <a class="btn btn-link" href="">RiverForecast </a>
+                    <a class="btn btn-link" href="">Rainfall Analysis</a>
+                    <a class="btn btn-link" href="">HydroVision</a>
+                    <a class="btn btn-link" href="">Metadata Predictive Analysis</a>
+                    <a class="btn btn-link" href="">2D-AI Image Generation</a>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="text-light mb-4">Newsletter</h3>
-                    <p>Quick updates, no fuss. Subscribe to our newsletter for simplicity in your inbox.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="container-fluid copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">Hydro Craft</a>, All Right Reserved.
+                        &copy; <a href="#">Designed and Developed by TECH CREED
+                        </a>,During the Smart India Hackathon.
                     </div>
                 </div>
             </div>
