@@ -28,6 +28,7 @@ router.get("/rainfall-analysis",pageController.rainFallAnalysis)
 router.post("/text2img",pageController.postGen)
 router.get("/river-analysis",pageController.river)
 router.get("/meta-data",pageController.meta)
+router.get("/river-data",pageController.river_data)
 router.post('/img2img',upload.fields([{ name: 'image' }, { name: 'mask' }]),pageController.postGen2)
 
 module.exports = router

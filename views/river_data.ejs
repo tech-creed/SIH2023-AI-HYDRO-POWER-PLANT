@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+x`<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,11 +32,6 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
-    <style>
-        .output3D {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -81,21 +76,9 @@
             </div>
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.5s">
-                    <form id="meta-data">
+                    <!-- <form id="meta-data">
 
                         <div class="row g-3">
-                            <div class="col-12 col-sm-6">
-                                <input type="text" name="head" class="form-control" placeholder="Head (meters)"
-                                    style="height: 55px" />
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <input type="text" name="flow_rate" class="form-control"
-                                    placeholder="Flow Rate (cubic meters/sec)" style="height: 55px" />
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <input type="text" name="flow_velocity" class="form-control"
-                                    placeholder="Flow Velocity (meters/sec)" style="height: 55px" />
-                            </div>
                             <div class="col-12 col-sm-6">
                                 <select name="penstock_material" class="form-select" style="height: 55px">
                                     <option selected>Select Penstock Material</option>
@@ -103,108 +86,47 @@
                                     <option value="concrete">Concrete</option>
                                 </select>
                             </div>
+
                             <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control" placeholder="Tensile Strength (megapascals)"
-                                    style="height: 55px" />
+                                <select name="penstock_material" class="form-select" style="height: 55px">
+                                    <option selected>Select Penstock Material</option>
+                                    <option value="steel">Steel</option>
+                                    <option value="concrete">Concrete</option>
+                                </select>
                             </div>
-                            <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control" placeholder="Safety Factor"
-                                    style="height: 55px" />
-                            </div>
+                            
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">
                                     Analyze
                                 </button>
                             </div>
                         </div>
+                    </form> -->
+                    <form action="" method="post" id="stateForm">
+                        <div class="row g-3">
+                            <div class="col-12 ">
+                                <select class="form-select" style="height: 55px;" name="state" id="state"
+                                    class="operator" required>
+                                    <option selected>Choose State</option>
+                                    <% for (const state in statesInIndia) { %>
+                                        <option value="<%= state %>">
+                                            <%= state %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Analyze</button>
+                            </div>
+                        </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
     <!-- Form End -->
-
-    <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container output3D">
-
-            <!-- turbine -->
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
-                    <div style="height: 100%;">
-                        <model-viewer id="turbineViewer" src="" alt="A 3D model" autoplay camera-controls
-                            style="width: 100%; height: 100%;"></model-viewer>
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h4 class="section-title">Turbine</h4>
-                    <h1 class="display-5 mb-4" id="turbineType">
-                    </h1>
-                    <p id="turComponentDescription"></p>
-                    <p class="mb-4" id="turPowerConsumption"></p>
-                    <p class="mb-4" id="turRotationalSpeed"></p>
-
-                    <div class="d-flex align-items-center mb-5">
-                    </div>
-                </div>
-
-                <br>
-                <br>
-
-                <!-- generator -->
-                <div class="row g-5">
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h4 class="section-title">Generator</h4>
-                        <h1 class="display-5 mb-4" id="generatorType">
-                        </h1>
-                        <p id="genComponentDescription"></p>
-                        <p class="mb-4" id="genPowerConsumption"></p>
-                        <p class="mb-4" id="genRotationalSpeed"></p>
-                    </div>
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
-                        <div style="height: 100%;">
-                            <model-viewer id="generatorViewer" src="" alt="A 3D model" autoplay camera-controls
-                                style="width: 100%; height: 100%;"></model-viewer>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-                <br>
-
-                <!-- penstock -->
-
-                <div class="row g-5">
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
-                        <div style="height: 100%;">
-                            <model-viewer id="penstockViewer" src="" alt="A 3D model" autoplay camera-controls
-                                style="width: 100%; height: 100%;"></model-viewer>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h4 class="section-title">Penstock</h4>
-                        <h1 class="display-5 mb-4">
-                            A Creative Architecture Agency For Your Dream Home
-                        </h1>
-                        <p>
-                            Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                            diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet
-                            lorem sit clita duo justo magna dolore erat amet
-                        </p>
-                        <p class="mb-4">
-                            Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No
-                            stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo
-                            nonumy clita sit at, sed sit sanctus dolor eos.
-                        </p>
-                       
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-        <!-- About End -->
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-body footer mt-5 pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
@@ -264,8 +186,45 @@
         <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
 
         <!-- Template Javascript -->
+        <script>
+            document.getElementById('stateForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const selectedState = document.getElementById('state').value.toUpperCase();
+    
+                fetch('http://localhost:3000/rainfall', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 'state': selectedState })
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                    .then(data => {
+                        const imgPaths = data.generatedGraphPath;
+    
+                        const resultChartSection = document.getElementById('resultChart');
+                        resultChartSection.style.display = 'block';
+    
+                        const resultImg1 = document.getElementById('districtWise');
+                        const resultImg2 = document.getElementById('stateAnalysis');
+                        const resultImg1Link = document.getElementById('districtWiseLink')
+                        const resultImg2Link = document.getElementById('stateAnalysisLink')
+    
+                        resultImg1Link.href = imgPaths[0]
+                        resultImg2Link.href = imgPaths[1]
+                        resultImg1.src = imgPaths[0];
+                        resultImg2.src = imgPaths[1];
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            })
+        </script>
         <script src="js/main.js"></script>
-        <script src="js/metaDataAnalysis.js"></script>
 </body>
 
 </html>
