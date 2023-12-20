@@ -1,5 +1,6 @@
 const riverdata = {
-  "Uttarakhand" : [{
+  "Uttarakhand" : [
+    {
       name: "Ganga",
       source: "The Ganga river originates from the Gangotri Glacier in Uttarakhand, India.",
       endpoint: "It flows into the Sundarbans Delta, Bay of Bengal.",
@@ -652,7 +653,7 @@ const riverdata = {
   state: "Rajasthan"
 },
 ],
-"Kerala" :[
+"Kerala" : [
 {
   name: "Periyar",
   source: "The Periyar river originates from the Western Ghats near the town of Peermade in the Indian state of Kerala.",
@@ -685,7 +686,6 @@ const riverdata = {
 }
 ],
 "Assam" : [{
-  "Brahmaputra": {
     "name": "Brahmaputra",
     "source": "The Brahmaputra river originates from the Chemayungdung Glacier in the Himalayas near the town of Mansarovar in Tibet (China).",
     "endpoint": "It flows into the Bay of Bengal through the Sundarbans Delta in Bangladesh and India.",
@@ -695,7 +695,6 @@ const riverdata = {
     "coordinates": "The coordinates of its source are approximately 30.5595° N, 82.2306° E, and the endpoint coordinates vary as it flows through multiple countries.",
     "state": "Assam"
   }
-}
 ]
 
 }
@@ -786,21 +785,15 @@ const meta = async(req,res)=>{
   res.render('meta_data')
 }
 
-const river_out = async(req,res)=>{
-  res.render('river_data_out')
-}
-
 const river_data = async(req,res)=>{
   res.render('river_data',{states})
 }
 
 const getRiverData = async(req,res)=>{
   const state = req.body.state;
-  var details = riverdata[state];
-  console.log(details)
-  //res.render('river_data',{states})
+  var riverData = riverdata[state];
+  res.render('river_data_out',{riverData})
 }
-
 
 const rainFallAnalysis = async(req,res)=>{
     res.render('rainfall',{statesInIndia})
