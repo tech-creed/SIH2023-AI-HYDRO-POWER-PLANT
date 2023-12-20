@@ -1,6 +1,6 @@
 from flask import jsonify, request
 import numpy as np
-# import tensorflow as tf
+import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -72,7 +72,7 @@ def prompt2img():
         "sampler_name" : "DPM++ 2M Karras",
         "batch_size": 4,
         "steps" : 30,
-        "cfg_scale": 9,
+        "cfg_scale": 7.5,
         "width": 480,
         "height": 620,
         "negative_prompt": ""
@@ -150,3 +150,48 @@ def calculator():
     res['penstock_type'] = request.json['penstock_material']
 
     return jsonify(res)
+
+
+@app.route('/segmentation', methods = ['POST'])
+def segmentation():
+    image = request.json['img']
+    image = d_base64_image(image)
+    image = image.resize((512, 512))
+
+    image = e_image_base64(image)
+
+    print(image)
+
+    data = {
+        "init_images":[image],
+        "prompt" : "",
+        "sampler_name" : "DPM++ 2M Karras",
+        "batch_size": 1,
+        "steps" : 30,
+        "cfg_scale": 7.5,
+        "width": 512,
+        "height": 512,
+        "negative_prompt": "",
+        "alwayson_scripts":{
+            "controlnet":{
+                "args":[{
+                    "input_image" : image,
+                    "module": "depth",
+                    "model": "control_v11f1p_sd15_depth [cfd03158]"
+                }]
+            }
+        }
+    }
+    
+    responce = requests.post(modelURL+'sdapi/v1/img2img', json=data)
+
+    imgPath = []
+    imageOrg = d_base64_image(image)
+    imageOrg.save('../public/satellite_depth/org.png')
+
+    for i in range(len(responce.json()['images'])):
+        image = d_base64_image(responce.json()['images'][i])
+        image.save('../public/satellite_depth/'+str(i)+".png")
+        imgPath.append("/satellite_depth/"+str(i)+".png")
+
+    return jsonify({'generatedImagePath': imgPath}) 

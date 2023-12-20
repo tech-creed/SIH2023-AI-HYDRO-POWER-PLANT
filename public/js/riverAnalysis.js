@@ -1,35 +1,59 @@
 const form = document.getElementById('imageUploadForm');
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    fetch('/dummy', {
-        method: 'POST',
-        body: new FormData(form) 
-      })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('generatedImage').src = data.waterBody;
 
-        const miniImageTabs = document.getElementById('miniImageTabs');
-        Object.entries(data).forEach(([key, value], index) => {
-            const miniImage = document.createElement('img');
-            miniImage.src = value;
-            miniImage.alt = `Image ${index + 1}`;
-            miniImage.classList.add('mini-image');
-            miniImage.onclick = function () {
-                changeImage(this);
-            };
-            miniImageTabs.appendChild(miniImage);
-        });
-
-        document.getElementById('analysisDetails').innerText = getDescriptionForImage('Image 1');
-        document.getElementById('generationType').innerText  = getGenerationType('Image 1')
-        const generatedImageContainer = document.querySelector('.generated-image-container');
-        generatedImageContainer.style.display = 'block';
-        form.style.display = 'none';
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
     });
+  }
+
+form.addEventListener('submit', function(event) {
+    
+    event.preventDefault();
+
+    const imageInput = document.getElementById("imageInput");
+    const imageFile = imageInput.files[0];
+
+
+    
+    getBase64(imageFile).then((imageData)=>{
+        fetch('http://localhost:3000/segmentation', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify({
+                img: imageData,
+              }),
+          })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('generatedImage').src = data.waterBody;
+    
+            const miniImageTabs = document.getElementById('miniImageTabs');
+            Object.entries(data).forEach(([key, value], index) => {
+                const miniImage = document.createElement('img');
+                miniImage.src = value;
+                miniImage.alt = `Image ${index + 1}`;
+                miniImage.classList.add('mini-image');
+                miniImage.onclick = function () {
+                    changeImage(this);
+                };
+                miniImageTabs.appendChild(miniImage);
+            });
+    
+            document.getElementById('analysisDetails').innerText = getDescriptionForImage('Image 1');
+            document.getElementById('generationType').innerText  = getGenerationType('Image 1')
+            const generatedImageContainer = document.querySelector('.generated-image-container');
+            generatedImageContainer.style.display = 'block';
+            form.style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    })
 })
 
 function changeImage(element) {
