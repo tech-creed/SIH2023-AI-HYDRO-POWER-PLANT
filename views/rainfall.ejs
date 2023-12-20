@@ -37,6 +37,48 @@
         #resultChart {
             display: none;
         }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            text-align: center;
+        }
+
+        .lightbox .close-btn {
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .lightbox .download-btn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            position: absolute;
+            top: 32px;
+            right: calc(30px + 40px);
+            cursor: pointer;
+        }
+
+        .lightbox .download-btn i {
+            margin-right: 5px;
+        }
+
+        .lightbox .lightbox-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 
 </head>
@@ -111,24 +153,38 @@
         <div class="container">
             <div id="resultChart" class="row g-5">
                 <h4 class="section-title">Result</h4>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style = "overflow: auto;">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="overflow: auto;">
                     <p>District Wise Analysis</p>
                     <br>
-                    <a href="" id="districtWiseLink" download="Rainfall_image.jpg">
-                        <img src="" id="districtWise" alt="Result Image" >
+                    <a href="" id="districtWiseLink" >
+                        <img src="" onclick="openLightbox(this.src)" width="400px" height="300px"  id="districtWise" alt="Result Image">
                     </a>
                 </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style = "overflow: auto;">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="overflow: auto;">
                     <p>Year Wise Analysis</p>
                     <br>
-                    <a href="" id="stateAnalysisLink" download="Rainfall_image.jpg">
-                        <img src="" id="stateAnalysis" alt="Result Image">
+                    <a href="" id="stateAnalysisLink">
+                        <img src="" onclick="openLightbox(this.src)" width="400px" height="300px" id="stateAnalysis" alt="Result Image">
                     </a>
                 </div>
             </div>
 
         </div>
     </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="button-container">
+            <span class="close-btn" onclick="closeLightbox()">&times;</span>
+            <a id="downloadLink" href="#" download="image.jpg" class="download-btn">
+                <i class="fa fa-download"></i>
+                <!-- Download icon -->
+            </a>
+        </div>
+        <div class="lightbox-content">
+            <img id="popUpImage" style="width:80%" src="" alt="Full-sized Image" />
+        </div>
+    </div>
+
     <!-- Rainfall analysis End -->
 
     <!-- Past data analysis -->
@@ -240,8 +296,8 @@
                     const resultImg1Link = document.getElementById('districtWiseLink')
                     const resultImg2Link = document.getElementById('stateAnalysisLink')
 
-                    resultImg1Link.href = imgPaths[0]
-                    resultImg2Link.href = imgPaths[1]
+                    resultImg1Link.href = 'javascript:void(0)'
+                    resultImg2Link.href = 'javascript:void(0)'
                     resultImg1.src = imgPaths[0];
                     resultImg2.src = imgPaths[1];
                 })
@@ -249,6 +305,20 @@
                     console.error('Error:', error);
                 });
         })
+    </script>
+    <script>
+        function closeLightbox() {
+                document.getElementById("lightbox").style.display = "none";
+            }
+            function openLightbox(imageSrc) {
+                console.log(imageSrc)
+                const lightbox = document.getElementById("lightbox");
+                const popUpImage = document.getElementById("popUpImage");
+
+                popUpImage.src = imageSrc;
+
+                lightbox.style.display = "flex";
+            }
     </script>
     <script src="js/main.js"></script>
 

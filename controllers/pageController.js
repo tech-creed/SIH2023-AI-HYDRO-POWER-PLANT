@@ -702,8 +702,8 @@ const riverdata = {
 const statesInIndia = {
   "Andaman And Nicobar Islands": "ANDAMAN AND NICOBAR ISLANDS",
   "Arunachal Pradesh": "ARUNACHAL PRADESH",
-  "Assam": "ASSAM",
-  "Meghalaya": "MEGHALAYA",
+  "Assam": "ASSAM & MEGHALAYA",
+  "Meghalaya": "ASSAM & MEGHALAYA",
   "Manipur": "MANIPUR",
   "Mizoram": "MIZORAM",
   "Nagaland": "NAGALAND",
