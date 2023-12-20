@@ -3,7 +3,7 @@ x`<!DOCTYPE html>
 
 <head>
     <meta charset="utf-8" />
-    <title>Metadata Predictive Analysis</title>
+    <title>River data</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -68,47 +68,20 @@ x`<!DOCTYPE html>
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px">
-                <h4 class="section-title">Metadata Predictive Analysis</h4>
+                <h4 class="section-title">River Details</h4>
                 <h1 class="display-5 mb-4">
-                    Recommend turbine, generator, and transformer types for optimal
-                    hydro power.
+                    Get the river details based on states
                 </h1>
             </div>
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.5s">
-                    <!-- <form id="meta-data">
-
-                        <div class="row g-3">
-                            <div class="col-12 col-sm-6">
-                                <select name="penstock_material" class="form-select" style="height: 55px">
-                                    <option selected>Select Penstock Material</option>
-                                    <option value="steel">Steel</option>
-                                    <option value="concrete">Concrete</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12 col-sm-6">
-                                <select name="penstock_material" class="form-select" style="height: 55px">
-                                    <option selected>Select Penstock Material</option>
-                                    <option value="steel">Steel</option>
-                                    <option value="concrete">Concrete</option>
-                                </select>
-                            </div>
-                            
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">
-                                    Analyze
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-                    <form action="" method="post" id="stateForm">
+                    <form action="/get-river-data" method="post" id="stateForm">
                         <div class="row g-3">
                             <div class="col-12 ">
                                 <select class="form-select" style="height: 55px;" name="state" id="state"
                                     class="operator" required>
                                     <option selected>Choose State</option>
-                                    <% for (const state in statesInIndia) { %>
+                                    <% for (const state in states) { %>
                                         <option value="<%= state %>">
                                             <%= state %>
                                         </option>
@@ -118,7 +91,7 @@ x`<!DOCTYPE html>
                             <br>
                             <br>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Analyze</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">Get Details</button>
                             </div>
                         </div>
                     </form>
@@ -185,45 +158,6 @@ x`<!DOCTYPE html>
 
         <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
 
-        <!-- Template Javascript -->
-        <script>
-            document.getElementById('stateForm').addEventListener('submit', function (event) {
-                event.preventDefault();
-                const selectedState = document.getElementById('state').value.toUpperCase();
-    
-                fetch('http://localhost:3000/rainfall', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 'state': selectedState })
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok.');
-                    }
-                    return response.json();
-                })
-                    .then(data => {
-                        const imgPaths = data.generatedGraphPath;
-    
-                        const resultChartSection = document.getElementById('resultChart');
-                        resultChartSection.style.display = 'block';
-    
-                        const resultImg1 = document.getElementById('districtWise');
-                        const resultImg2 = document.getElementById('stateAnalysis');
-                        const resultImg1Link = document.getElementById('districtWiseLink')
-                        const resultImg2Link = document.getElementById('stateAnalysisLink')
-    
-                        resultImg1Link.href = imgPaths[0]
-                        resultImg2Link.href = imgPaths[1]
-                        resultImg1.src = imgPaths[0];
-                        resultImg2.src = imgPaths[1];
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            })
-        </script>
         <script src="js/main.js"></script>
 </body>
 

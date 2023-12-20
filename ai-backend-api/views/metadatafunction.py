@@ -115,7 +115,7 @@ def select_generator_with_excitation(turbine_type, speed_range):
     min_speed, max_speed = map(int, speed_range.split('-'))
 
     # Preliminary generator type selection based on turbine type and speed range
-    if turbine_type == 'Pelton Trubine':
+    if turbine_type == 'Pelton Turbine':
         if min_speed >= 500 and max_speed <= 2000:
             generator_type = 'High-speed synchronous'
             excitation_system = 'Permanent magnets or direct-coupled exciter'
