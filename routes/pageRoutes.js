@@ -29,7 +29,11 @@ router.post("/text2img",pageController.postGen)
 router.get("/river-analysis",pageController.river)
 router.get("/meta-data",pageController.meta)
 router.get("/river-data",pageController.river_data)
+<<<<<<< HEAD
 router.post("/get-river-data",pageController.getRiverData)
+=======
+router.get("/river-out",pageController.river_out)
+>>>>>>> d28dccb8f5b5ea9699d609921660909d3d501bc4
 router.post('/img2img',upload.fields([{ name: 'image' }, { name: 'mask' }]),pageController.postGen2)
 
 module.exports = router

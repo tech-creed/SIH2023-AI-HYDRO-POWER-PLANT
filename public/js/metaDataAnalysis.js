@@ -18,6 +18,13 @@ document.getElementById('meta-data').addEventListener('submit', function(event) 
       .then(data => {
         console.log('Response:', data);
         displayHydroComponents(data); 
+        document.getElementById('I1').innerHTML = '<strong>Excitation System:</strong>' + data.excitation_system;
+        document.getElementById('I2').innerHTML = '<strong>Generator Type:</strong>' + data.generator_type;
+        document.getElementById('I3').innerHTML = '<strong>Hydro Power Output:</strong>' + data.hydro_poweroutput;
+        document.getElementById('I4').innerHTML = '<strong>Penstock Diameter:</strong>' + data.penstock_diameter;
+        document.getElementById('I5').innerHTML = '<strong>Penstock Type:</strong>' + data.penstock_thickness;
+        document.getElementById('I6').innerHTML = '<strong>Turbine Efficiency:</strong>' + data.turbine_efficiency;
+        document.getElementById('I7').innerHTML = '<strong>Turbine Type:</strong>' + data.turbine_type;
         var output3D = document.querySelector('.output3D')
         output3D.style.display = 'block'
         alert('done')
@@ -112,11 +119,14 @@ function displayGenerator(generatorType) {
 function displayPenstock(penstockType) {
   switch (penstockType) {
     case 'steel':
-      // document.getElementById('penstockInfo').textContent = 'Information for Steel Penstock';
+      document.getElementById('penstockInfo').innerHTML = '<strong>Description: </strong>Steel penstocks are constructed using high-quality steel materials, such as stainless steel or carbon steel. They are durable, corrosion-resistant, and suitable for various industrial applications.';
+      document.getElementById('penstockType').innerHTML = 'Information for Steel Penstock';
+
       loadModel('3D assets/steel_penstock.glb', 'penstockViewer');
       break;
     case 'concrete':
-      // document.getElementById('penstockInfo').textContent = 'Information for Concrete Penstock';
+      document.getElementById('penstockInfo').innerHTML = '<strong>Description: </strong>Concrete penstocks are constructed using reinforced concrete, offering high strength and durability. They are commonly used in dam and reservoir projects due to their ability to withstand high pressures.';
+      document.getElementById('penstockType').innerHTML = 'Information for Concrete Penstock';
       loadModel('3D assets/concrete_penstock.glb', 'penstockViewer');
       break;
     default:

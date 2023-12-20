@@ -786,6 +786,10 @@ const meta = async(req,res)=>{
   res.render('meta_data')
 }
 
+const river_out = async(req,res)=>{
+  res.render('river_data_out')
+}
+
 const river_data = async(req,res)=>{
   res.render('river_data',{states})
 }
