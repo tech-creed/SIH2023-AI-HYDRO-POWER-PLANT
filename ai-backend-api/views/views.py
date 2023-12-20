@@ -160,8 +160,6 @@ def segmentation():
 
     image = e_image_base64(image)
 
-    print(image)
-
     data = {
         "init_images":[image],
         "prompt" : "",
@@ -182,6 +180,27 @@ def segmentation():
             }
         }
     }
+
+    segmentationData = {
+        "init_images":[image],
+        "prompt" : "",
+        "sampler_name" : "DPM++ 2M Karras",
+        "batch_size": 1,
+        "steps" : 30,
+        "cfg_scale": 7.5,
+        "width": 512,
+        "height": 512,
+        "negative_prompt": "",
+        "alwayson_scripts":{
+            "controlnet":{
+                "args":[{
+                    "input_image" : image,
+                    "module": "segmentation",
+                    "model": "control_v11p_sd15_seg [e1f51eb9]"
+                }]
+            }
+        }
+    }
     
     responce = requests.post(modelURL+'sdapi/v1/img2img', json=data)
 
@@ -190,8 +209,18 @@ def segmentation():
     imageOrg.save('../public/satellite_depth/org.png')
 
     for i in range(len(responce.json()['images'])):
-        image = d_base64_image(responce.json()['images'][i])
-        image.save('../public/satellite_depth/'+str(i)+".png")
+        imageTmp = d_base64_image(responce.json()['images'][i])
+        imageTmp.save('../public/satellite_depth/'+str(i)+".png")
         imgPath.append("/satellite_depth/"+str(i)+".png")
 
-    return jsonify({'generatedImagePath': imgPath}) 
+#------------------------------------------------------------------------#
+    responce = requests.post(modelURL+'sdapi/v1/img2img', json=segmentationData)
+    imageOrg = d_base64_image(image)
+    imageOrg.save('../public/satellite/org.png')
+
+    for i in range(len(responce.json()['images'])):
+        imageTmp = d_base64_image(responce.json()['images'][i])
+        imageTmp.save('../public/satellite/'+str(i)+".png")
+        imgPath.append("/satellite/"+str(i)+".png")
+
+    return jsonify({'generatedImagePath': imgPath})
