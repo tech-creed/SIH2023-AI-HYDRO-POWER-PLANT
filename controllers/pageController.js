@@ -791,7 +791,7 @@ const river_data = async(req,res)=>{
 const getRiverData = async(req,res)=>{
   const state = req.body.state;
   var riverData = riverdata[state];
-  res.render('river_data_out',{riverData})
+  res.render('river_data_out',{riverData,state})
 }
 
 const rainFallAnalysis = async(req,res)=>{

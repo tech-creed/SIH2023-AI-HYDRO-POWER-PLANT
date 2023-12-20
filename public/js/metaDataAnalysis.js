@@ -27,7 +27,6 @@ document.getElementById('meta-data').addEventListener('submit', function(event) 
         document.getElementById('I7').innerHTML = '<strong>Turbine Type:</strong>' + data.turbine_type;
         var output3D = document.querySelector('.output3D')
         output3D.style.display = 'block'
-        alert('done')
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);

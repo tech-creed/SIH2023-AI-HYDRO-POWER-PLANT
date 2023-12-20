@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Metadata Predictive Analysis</title>
+    <title>River Details</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -45,6 +45,14 @@
       .output3D {
         display: none;
       }
+
+      .riverCard {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
     </style>
   </head>
 
@@ -103,30 +111,24 @@
 
     <div class="container-xxl py-5">
         <div class="container pt-5">
+          <div style="text-align:center">
+            <h1 style="color:#B78D65">State - <%= state %></h1>
+          </div>
+          <br><br>
+          <h4 style="color:#45628f">Rivers Details in List</h4>
+          <br><br>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="fact-item text-center bg-light h-100 p-5 pt-0">
-                        <div class="fact-icon">
-                            <img src="img/icons/location.png" alt="Icon">
-                        </div>
-                        <h3 class="mb-3">Wardha</h3>
-                        <p class="mb-0">Source: The Wardha river originates from the Balaghat Hills near the town of Multai in the Indian state of Madhya Pradesh.</p>
-                    </div>
-                </div>
                 <% riverData.forEach(item=>{ %>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-lg-4 riverCard col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="fact-item text-center bg-light h-100 p-5 pt-0">
-                            <div class="fact-icon">
-                                <img src="img/icons/location.png" alt="Icon">
-                            </div>
                             <h3 class="mb-3"><%= item.name %></h3>
-                            <p class="mb-0">
-                                Source: <%= item.source %> <br>
-                                Endpoint: <%= item.endpoint %> <br>
-                                Elevation: <%= item.elevation %> <br>
-                                Length: <%= item.length %> <br>
-                                Cities: <%= item.cities %> <br>
-                                Coordinates: <%= item.coordinates %>
+                            <p class="mb-0 justify-content-center">
+                                <strong>Source: </strong><%= item.source %> <br>
+                                <strong>Endpoint: </strong><%= item.endpoint %> <br>
+                              <strong>Elevation: </strong><%= item.elevation %> <br>
+                            <strong>Length: </strong><%= item.length %> <br>
+                          <strong>Cities: </strong><%= item.cities %> <br>
+                        <strong>Coordinates: </strong><%= item.coordinates %>
                             </p>
                         </div>
                     </div>
