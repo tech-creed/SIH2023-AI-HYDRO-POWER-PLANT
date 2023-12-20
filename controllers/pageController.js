@@ -798,6 +798,10 @@ const rainFallAnalysis = async(req,res)=>{
     res.render('rainfall',{statesInIndia})
 }
 
+const result = async(req,res)=>{
+  res.render('result')
+}
+
 const postGen = async(req,res)=>{
     console.log('Received POST data:', req.body);
 
@@ -836,4 +840,4 @@ const postGen2 = async (req,res)=>{
 }
 
 
-module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis,river,postGen2,meta,river_data,getRiverData}
+module.exports = { homePage,dashBoard,genPandIPage,genP2IPage,genHome,postGen,rainFallAnalysis,river,postGen2,meta,river_data,getRiverData,result}

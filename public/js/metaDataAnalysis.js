@@ -18,11 +18,13 @@ document.getElementById('meta-data').addEventListener('submit', function(event) 
       .then(data => {
         console.log('Response:', data);
         displayHydroComponents(data); 
+        const jsonData = JSON.stringify(data);
+        localStorage.setItem('metaData', jsonData);
         document.getElementById('I1').innerHTML = '<strong>Excitation System:</strong>' + data.excitation_system;
         document.getElementById('I2').innerHTML = '<strong>Generator Type:</strong>' + data.generator_type;
         document.getElementById('I3').innerHTML = '<strong>Hydro Power Output:</strong>' + data.hydro_poweroutput;
         document.getElementById('I4').innerHTML = '<strong>Penstock Diameter:</strong>' + data.penstock_diameter;
-        document.getElementById('I5').innerHTML = '<strong>Penstock Type:</strong>' + data.penstock_thickness;
+        document.getElementById('I5').innerHTML = '<strong>Penstock Thickness:</strong>' + data.penstock_thickness;
         document.getElementById('I6').innerHTML = '<strong>Turbine Efficiency:</strong>' + data.turbine_efficiency;
         document.getElementById('I7').innerHTML = '<strong>Turbine Type:</strong>' + data.turbine_type;
         var output3D = document.querySelector('.output3D')
