@@ -696,7 +696,6 @@ const riverdata = {
     "state": "Assam"
   }
 ]
-
 }
 const statesInIndia = {
   "Andaman And Nicobar Islands": "ANDAMAN AND NICOBAR ISLANDS",

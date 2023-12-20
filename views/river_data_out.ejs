@@ -113,8 +113,7 @@
                         <p class="mb-0">Source: The Wardha river originates from the Balaghat Hills near the town of Multai in the Indian state of Madhya Pradesh.</p>
                     </div>
                 </div>
-                <% riverData.forEach(fatch); %>
-                <% function fatch(item) { %>
+                <% riverData.forEach(item=>{ %>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="fact-item text-center bg-light h-100 p-5 pt-0">
                             <div class="fact-icon">
@@ -131,7 +130,7 @@
                             </p>
                         </div>
                     </div>
-                <% } %>
+                <% }) %>
                 
             </div>
         </div>
