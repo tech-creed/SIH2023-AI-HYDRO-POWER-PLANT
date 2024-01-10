@@ -181,17 +181,18 @@
                 <div class="container output3D">
 
                     <div class="row">
-                        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px">
+                        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
+                            style="max-width: 600px">
                             <h1 style="color:#2b619e" class="display-5 mb-4">
                                 Metadata Analyse
                             </h1>
                         </div>
-                       
+
                         <div class="col-md-6 offset-md-3">
                             <div class="details-card">
                                 <div class="card">
                                     <div style="color:#B78D65" class="card-header">
-                                       Metadata Analyse - Result
+                                        Metadata Analyse - Result
                                     </div>
                                     <div class="card-body">
                                         <ul class="list-group">
@@ -235,18 +236,18 @@
             <div class="row g-5">
 
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <img style="width: 100%; border-radius: 20px;" src="/satellite/org.png" alt="">
-                   
+                    <img style="width: 100%; border-radius: 20px;" src="/generated/0.png" alt="">
+
                 </div>
 
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <img style="width: 100%; border-radius: 20px;" src="/satellite_depth/0.png" alt="">
-                  
+                    <img style="width: 100%; border-radius: 20px;" src="/generated/1.png" alt="">
+
                 </div>
 
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <img style="width: 100%; border-radius: 20px;" src="/satellite_depth/1.png" alt="">
-                    
+                    <img style="width: 100%; border-radius: 20px;" src="/generated/3.png" alt="">
+
                 </div>
 
             </div>
@@ -254,28 +255,36 @@
             <br><br>
 
             <div class="row g-5">
+                <h4 class="section-title">3D Generative Hydro Power Plant</h4>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
                     <div style="height: 100%;">
-                        <model-viewer id="turbineViewer" src="" alt="A 3D model" autoplay camera-controls
-                            style="width: 100%; height: 100%;"></model-viewer>
+                        <model-viewer id="turbineViewer" src="3D assets/dam.glb" alt="A 3D model" autoplay
+                            camera-controls style="width: 100%; height: 100%;"></model-viewer>
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h4 class="section-title">Main Components</h4>
                     <h1 class="display-5" id="turbineType">Kaplan turbine</h1>
-                    <p id="turComponentDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-                        recusandae a architecto quas quibusdam, eum sint unde illo. Inventore quod assumenda nam
-                        repudiandae fugit placeat amet facilis rerum, neque voluptatem?</p>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
+                        <div style="height: 100%;">
+                            <model-viewer id="turbineViewer" src="3D assets/kaplan_turbine.glb" alt="A 3D model"
+                                autoplay camera-controls style="width: 100%; height: 100%;"></model-viewer>
+                        </div>
+                    </div>
+                    <h1 class="display-5 mb-4" id="generatorType">Generator</h1>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
 
-                    <h1 class="display-5 mb-4" id="generatorType">Kaplan turbine</h1>
-                    <p id="genComponentDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                        voluptatibus, eligendi quam rerum eveniet tenetur iusto, similique deserunt architecto
-                        reprehenderit ex maxime minima hic porro? Ut beatae eligendi ea eveniet?</p>
+                        <div style="height: 100%;">
+                            <model-viewer id="turbineViewer" src="3D assets/generator.glb" alt="A 3D model" autoplay
+                                camera-controls style="width: 100%; height: 100%;"></model-viewer>
+                        </div>
+                    </div>
+                    <h1 id="penstockType" class="display-5 mb-4">Penstock</h1>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="height: 400px;">
 
-                    <h1 id="penstockType" class="display-5 mb-4">penstock</h1>
-                    <p id="penstockInfo">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus laboriosam
-                        ipsa repellat atque eius, provident dolor ad! Velit iusto ipsam, voluptas ducimus incidunt nam
-                        saepe porro eum enim, nulla assumenda?</p>
+                        <model-viewer id="turbineViewer" src="3D assets/concrete_penstock.glb" alt="A 3D model" autoplay
+                            camera-controls style="width: 100%; height: 100%;"></model-viewer>
+                    </div>
 
                 </div>
 

@@ -1,6 +1,6 @@
 from flask import jsonify, request
 import numpy as np
-# import tensorflow as tf
+import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -115,7 +115,7 @@ def img2img():
     "init_images":[image],
     "mask":mask,
     "denoising_strength" : 0.75,
-    "prompt" : request.json['prompt'],
+    "prompt" : 'run of river hydro power plant',
     "batch_size": 3,
     "steps": 30,
     "cfg_scale" : 7.5,
@@ -206,7 +206,10 @@ def segmentation():
 
     imgPath = []
     imageOrg = d_base64_image(image)
+
     imageOrg.save('../public/satellite_depth/org.png')
+    imgPath.append('/satellite_depth/org.png')
+
 
     for i in range(len(responce.json()['images'])):
         imageTmp = d_base64_image(responce.json()['images'][i])
@@ -214,13 +217,11 @@ def segmentation():
         imgPath.append("/satellite_depth/"+str(i)+".png")
 
 #------------------------------------------------------------------------#
-    responce = requests.post(modelURL+'sdapi/v1/img2img', json=segmentationData)
-    imageOrg = d_base64_image(image)
-    imageOrg.save('../public/satellite/org.png')
-
-    for i in range(len(responce.json()['images'])):
-        imageTmp = d_base64_image(responce.json()['images'][i])
-        imageTmp.save('../public/satellite/'+str(i)+".png")
-        imgPath.append("/satellite/"+str(i)+".png")
+    # responce = requests.post(modelURL+'sdapi/v1/img2img', json=segmentationData)
+    # imageOrg = d_base64_image(image)
+    # for i in range(len(responce.json()['images'])):
+    #     imageTmp = d_base64_image(responce.json()['images'][i])
+    #     imageTmp.save('../public/satellite/'+str(i)+".png")
+    #     imgPath.append("/satellite/"+str(i)+".png")
 
     return jsonify({'generatedImagePath': imgPath})
